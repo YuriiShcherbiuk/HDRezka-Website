@@ -1,0 +1,204 @@
+@font-face {
+    font-family: 'Onest';
+    src: url('OnestBold.woff') format('woff'),
+        url('OnestBold.ttf') format('truetype'),
+        url('OnestMedium.woff') format('woff'),
+        url('OnestMedium.ttf') format('truetype');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Onest Medium';
+    font-weight: 500;
+    color: #ffffff;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    background: #1a1a1a;
+}
+
+.logo {
+    display: flex;
+    font-weight: 700;
+    font-size: 8vmin;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo svg {
+    max-width: 10vmin;
+    max-height: 10vmin;
+    margin: 0 1vmin 0 0;
+    padding: 1vmin 1vmin 1vmin 0;
+    height: 100%;
+}
+
+.info {
+    color: #ffffffb2;
+    text-align: left;
+    font-size: 4vmin;
+}
+
+.telegram {
+    display: flex;
+    font-size: 4vmin;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+}
+
+.telegram svg {
+    max-width: 6vmin;
+    max-height: 6vmin;
+    margin: 0 1vmin 0 0;
+    padding: 1vmin 1vmin 1vmin 0;
+    height: 100%;
+    transition: fill 250ms;
+}
+
+.telegram:hover svg {
+    fill: #38a6db;
+}
+
+.page {
+    display: flex;
+    flex-direction: row;
+    padding: 5vmin 15vmin;
+    height: 100%;
+}
+
+.section {
+    display: flex;
+    flex-direction: column;
+    padding: 12vmin 0;
+    width: 50%;
+    height: 100%;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.screenshots {
+    padding: 0;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.screenshots::before {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 50%;
+    height: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #903147;
+    filter: blur(50vmin);
+    z-index: -1;
+    animation: fade 10s ease-in-out infinite;
+}
+
+.screenshots img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.screenshots picture {
+    position: relative;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.screenshots picture::before {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 2%;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background: radial-gradient(#1a1a1a, transparent 75%);
+}
+
+@media (max-width: 1024px) {
+    .page {
+        flex-direction: column;
+        padding: 5vmin;
+    }
+
+    .section {
+        width: 100%;
+        height: 50%;
+        padding: 0;
+        align-items: center;
+        justify-content: space-around;
+    }
+
+    .screenshots {
+        padding: 0;
+    }
+
+    .info {
+        text-align: center;
+    }
+
+    .telegram {
+        padding: 3vmin 8vmin;
+        border-radius: 3vmin;
+        background: #262223;
+    }
+}
+
+@media (max-width: 768px) {
+    .page {
+        flex-direction: column;
+        padding: 10vmin;
+    }
+
+    .section {
+        width: 100%;
+        height: 50%;
+        padding: 0;
+        align-items: center;
+        justify-content: space-around;
+    }
+
+    .screenshots {
+        padding: 0;
+    }
+
+    .info {
+        text-align: center;
+    }
+
+    .telegram {
+        padding: 3vmin 8vmin;
+        border-radius: 3vmin;
+        background: #262223;
+    }
+}
+
+@keyframes fade {
+    0%,
+    100% {
+        width: 50%;
+        height: 50%;
+    }
+    50% {
+        width: 75%;
+        height: 75%;
+    }
+}
