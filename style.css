@@ -22,6 +22,10 @@ body {
     height: 100%;
 }
 
+body {
+    background-color: #1a1a1a;
+}
+
 canvas {
     display: block;
     position: absolute;
