@@ -13,6 +13,7 @@
     font-family: 'Onest', sans-serif;
     font-weight: 500;
     color: #ffffff;
+    -webkit-appearance: none;
 }
 
 html,
