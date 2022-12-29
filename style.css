@@ -1,8 +1,6 @@
 @font-face {
     font-family: 'Onest';
-    src: url('OnestBold.woff') format('woff'),
-        url('OnestBold.ttf') format('truetype'),
-        url('OnestMedium.woff') format('woff'),
+    src: url('OnestBold.ttf') format('truetype'),
         url('OnestMedium.ttf') format('truetype');
 }
 
