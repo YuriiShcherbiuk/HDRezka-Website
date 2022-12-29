@@ -71,6 +71,10 @@ canvas {
     display: -ms-flexbox;
     display: flex;
     font-size: 4vmin;
+    padding: 1.5vmin 3vmin;
+    -webkit-border-radius: 2vmin;
+    -moz-border-radius: 2vmin;
+    border-radius: 2vmin;
     text-align: center;
     -webkit-box-pack: center;
     -webkit-justify-content: center;
@@ -83,6 +87,15 @@ canvas {
     -ms-flex-align: center;
     align-items: center;
     text-decoration: none;
+    background-color: #90314733;
+    -webkit-transition: background-color 250ms;
+    -o-transition: background-color 250ms;
+    -moz-transition: background-color 250ms;
+    transition: background-color 250ms;
+}
+
+.telegram:hover {
+    background-color: #9031477d;
 }
 
 .telegram svg {
@@ -95,10 +108,6 @@ canvas {
     -o-transition: fill 250ms;
     -moz-transition: fill 250ms;
     transition: fill 250ms;
-}
-
-.telegram:hover svg {
-    fill: #38a6db;
 }
 
 .page {
