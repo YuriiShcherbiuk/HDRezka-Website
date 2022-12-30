@@ -1,7 +1,13 @@
 @font-face {
-    font-family: 'Onest';
-    src: url('OnestBold.ttf') format('truetype'),
-        url('OnestMedium.ttf') format('truetype');
+    font-family: 'Onest Bold';
+    src: url('./fonts/OnestBold.ttf') format('truetype'),
+        url('./fonts/OnestBold.ttf') format('woff');
+}
+
+@font-face {
+    font-family: 'Onest Medium';
+    src: url('./fonts/OnestMedium.ttf') format('truetype'),
+        url('./fonts/OnestMedium.ttf') format('woff');
 }
 
 * {
@@ -10,8 +16,7 @@
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    font-family: 'Onest', sans-serif;
-    font-weight: 500;
+    font-family: 'Onest Medium', sans-serif;
     color: #ffffff;
     -webkit-appearance: none;
 }
@@ -43,7 +48,7 @@ canvas {
     display: -moz-box;
     display: -ms-flexbox;
     display: flex;
-    font-weight: 700;
+    font-family: 'Onest Bold', sans-serif;
     font-size: 8vmin;
     text-align: center;
     -webkit-box-pack: center;
