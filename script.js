@@ -42,6 +42,7 @@ class Snowflake {
         this.rotateSpeed = ((Math.random() - 0.5) * this.speed) / 20;
         this.size = rand(MIN_SIZE, MAX_SIZE);
         this.off = rand(0, 1000);
+        this.opacity = 0;
     }
 
     update() {
@@ -49,9 +50,22 @@ class Snowflake {
         this.posX += noise.getValue(this.off);
         this.rotation += this.rotateSpeed;
         this.off += 0.007;
-        if (this.posY > h + this.size * 2) {
-            this.posY = -this.size * 2;
+
+        if (this.posY > h + this.size) {
+            this.posY = -this.size;
             this.posX = Math.random() * w;
+        }
+
+        if (this.posX > w + this.size) {
+            this.posX = -this.size;
+        }
+
+        if (this.posX < 0 - this.size) {
+            this.posX = w + this.size;
+        }
+
+        if (this.opacity < 1) {
+            this.opacity += 0.05;
         }
     }
 }
@@ -75,10 +89,6 @@ function setup() {
     createCanvas(w, h);
 
     noise = new Perlin();
-
-    for (let i = 0; i < Math.floor((w * h) / SNOWFLAKE_PER_PIXEL); i++) {
-        snow.push(new Snowflake());
-    }
 }
 
 function draw() {
@@ -86,7 +96,10 @@ function draw() {
         snow.pop();
     }
 
-    if (snow.length < Math.floor((w * h) / SNOWFLAKE_PER_PIXEL)) {
+    if (
+        frameCount % 10 === 0 &&
+        snow.length < Math.floor((w * h) / SNOWFLAKE_PER_PIXEL)
+    ) {
         snow.push(new Snowflake());
     }
 
@@ -98,6 +111,9 @@ function draw() {
         push();
         translate(snow[i].posX, snow[i].posY);
         rotate(snow[i].rotation);
+        if (snow[i].opacity < 1) {
+            tint(255, 255 * snow[i].opacity);
+        }
         image(snow[i].snowflake, 0, 0, snow[i].size, snow[i].size);
         pop();
     }
