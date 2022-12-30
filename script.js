@@ -111,9 +111,11 @@ function draw() {
         push();
         translate(snow[i].posX, snow[i].posY);
         rotate(snow[i].rotation);
+
         if (snow[i].opacity < 1) {
             tint(255, 255 * snow[i].opacity);
         }
+
         image(snow[i].snowflake, 0, 0, snow[i].size, snow[i].size);
         pop();
     }

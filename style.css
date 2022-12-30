@@ -100,7 +100,7 @@ canvas {
     -ms-flex-align: center;
     align-items: center;
     text-decoration: none;
-    background-color: #222222;
+    background-color: #222222cc;
     -webkit-transition: background-color 250ms;
     -o-transition: background-color 250ms;
     -moz-transition: background-color 250ms;
@@ -108,7 +108,7 @@ canvas {
 }
 
 .telegram:hover {
-    background-color: #333333;
+    background-color: #333333cc;
 }
 
 .telegram svg {
