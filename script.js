@@ -74,7 +74,7 @@ const MIN_SIZE = 10,
     MAX_SIZE = 30,
     MIN_SPEED = 0.3,
     MAX_SPEED = 0.8,
-    SNOWFLAKE_PER_PIXEL = 3000;
+    SNOWFLAKE_PER_PIXEL = 5000;
 
 let noise;
 
