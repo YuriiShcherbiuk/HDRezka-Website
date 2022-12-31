@@ -57,8 +57,7 @@ class Perlin {
 
 class Snowflake {
     constructor(theme) {
-        this.theme = theme;
-        this.snowflake = createSnowflake(this.theme);
+        this.snowflake = createSnowflake(theme);
         this.posX = rand(0, w);
         this.posY = rand(0, h);
         this.rotation = rand(0, Math.PI / 3);
@@ -92,12 +91,6 @@ class Snowflake {
             this.opacity += 0.05;
         }
     }
-
-    checkTheme(theme) {
-        if (this.theme !== theme) {
-            this.snowflake = createSnowflake(theme);
-        }
-    }
 }
 
 const MIN_SIZE = 10,
@@ -107,6 +100,8 @@ const MIN_SIZE = 10,
     SNOWFLAKE_PER_PIXEL = 5000;
 
 let noise;
+
+let snowTheme;
 
 let w = 0,
     h = 0;
@@ -118,10 +113,17 @@ function setup() {
     h = window.innerHeight;
     createCanvas(w, h);
 
+    snowTheme === theme;
+
     noise = new Perlin();
 }
 
 function draw() {
+    if (snowTheme !== theme) {
+        snow.splice(0, snow.length);
+        snowTheme = theme;
+    }
+
     while (snow.length > Math.floor((w * h) / SNOWFLAKE_PER_PIXEL)) {
         snow.pop();
     }
@@ -137,7 +139,6 @@ function draw() {
 
     for (let i = 0; i < snow.length; i++) {
         snow[i].update();
-        snow[i].checkTheme(theme);
 
         push();
         translate(snow[i].posX, snow[i].posY);
