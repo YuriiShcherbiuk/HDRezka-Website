@@ -56,8 +56,7 @@ class Perlin {
 }
 
 class Snowflake {
-    constructor(theme) {
-        this.snowflake = createSnowflake(theme);
+    constructor() {
         this.posX = rand(0, w);
         this.posY = rand(0, h);
         this.rotation = rand(0, Math.PI / 3);
@@ -101,7 +100,7 @@ const MIN_SIZE = 10,
 
 let noise;
 
-let snowTheme;
+let snowflake, snowTheme;
 
 let w = 0,
     h = 0;
@@ -113,15 +112,18 @@ function setup() {
     h = window.innerHeight;
     createCanvas(w, h);
 
-    snowTheme === theme;
+    snowTheme = theme;
+    snowflake = createSnowflake(snowTheme);
 
     noise = new Perlin();
 }
 
 function draw() {
     if (snowTheme !== theme) {
-        snow.splice(0, snow.length);
         snowTheme = theme;
+
+        snowflake.remove();
+        snowflake = createSnowflake(snowTheme);
     }
 
     while (snow.length > Math.floor((w * h) / SNOWFLAKE_PER_PIXEL)) {
@@ -132,7 +134,7 @@ function draw() {
         frameCount % 10 === 0 &&
         snow.length < Math.floor((w * h) / SNOWFLAKE_PER_PIXEL)
     ) {
-        snow.push(new Snowflake(theme));
+        snow.push(new Snowflake());
     }
 
     theme === 'dark' ? background(26) : background(252, 248, 248);
@@ -141,6 +143,7 @@ function draw() {
         snow[i].update();
 
         push();
+
         translate(snow[i].posX, snow[i].posY);
         rotate(snow[i].rotation);
 
@@ -148,7 +151,8 @@ function draw() {
             tint(255, 255 * snow[i].opacity);
         }
 
-        image(snow[i].snowflake, 0, 0, snow[i].size, snow[i].size);
+        image(snowflake, 0, 0, snow[i].size, snow[i].size);
+
         pop();
     }
 }
