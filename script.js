@@ -1,3 +1,26 @@
+//Theme
+
+let theme = 'light';
+
+if (window.matchMedia) {
+    window
+        .matchMedia('(prefers-color-scheme: dark)')
+        .addEventListener('change', (event) => {
+            theme = event.matches ? 'dark' : 'light';
+            document.body.className = theme;
+        });
+
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        theme = 'dark';
+    } else {
+        theme = 'light';
+    }
+
+    document.body.className = theme;
+}
+
+//Snowfall
+
 class Perlin {
     constructor() {
         this.perm = (() => {
@@ -33,8 +56,9 @@ class Perlin {
 }
 
 class Snowflake {
-    constructor() {
-        this.snowflake = createSnowflake();
+    constructor(theme) {
+        this.theme = theme;
+        this.snowflake = createSnowflake(this.theme);
         this.posX = rand(0, w);
         this.posY = rand(0, h);
         this.rotation = rand(0, Math.PI / 3);
@@ -66,6 +90,12 @@ class Snowflake {
 
         if (this.opacity < 1) {
             this.opacity += 0.05;
+        }
+    }
+
+    checkTheme(theme) {
+        if (this.theme !== theme) {
+            this.snowflake = createSnowflake(theme);
         }
     }
 }
@@ -100,13 +130,14 @@ function draw() {
         frameCount % 10 === 0 &&
         snow.length < Math.floor((w * h) / SNOWFLAKE_PER_PIXEL)
     ) {
-        snow.push(new Snowflake());
+        snow.push(new Snowflake(theme));
     }
 
-    background(26);
+    theme === 'dark' ? background(26) : background(252, 248, 248);
 
     for (let i = 0; i < snow.length; i++) {
         snow[i].update();
+        snow[i].checkTheme(theme);
 
         push();
         translate(snow[i].posX, snow[i].posY);
@@ -121,10 +152,12 @@ function draw() {
     }
 }
 
-function createSnowflake() {
+function createSnowflake(theme) {
     let snowflake = createGraphics(100, 100);
 
-    snowflake.stroke(255, 255, 255, 255 * 0.6);
+    theme === 'dark'
+        ? snowflake.stroke(255, 255, 255, 255 * 0.4)
+        : snowflake.stroke(0, 191, 255, 255 * 0.4);
     snowflake.strokeWeight(6);
     snowflake.strokeCap(ROUND);
     snowflake.noFill();
@@ -171,24 +204,4 @@ window.onresize = () => {
 
 function rand(min, max) {
     return Math.random() * (max - min) + min;
-}
-
-//Theme
-let theme = 'light';
-
-if (window.matchMedia) {
-    window
-        .matchMedia('(prefers-color-scheme: dark)')
-        .addEventListener('change', (event) => {
-            theme = event.matches ? 'dark' : 'light';
-            document.body.className = theme;
-        });
-
-    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        theme = 'dark';
-    } else {
-        theme = 'light';
-    }
-
-    document.body.className = theme;
 }
