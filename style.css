@@ -17,8 +17,15 @@
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     font-family: 'Onest Medium', sans-serif;
-    color: #ffffff;
     -webkit-appearance: none;
+}
+
+.dark * {
+    color: #ffffff;
+}
+
+.light * {
+    color: #000000;
 }
 
 html,
@@ -29,7 +36,14 @@ body {
 
 body {
     position: relative;
+}
+
+.dark {
     background-color: #1a1a1a;
+}
+
+.light {
+    background-color: #fcf8f8;
 }
 
 canvas {
@@ -71,10 +85,25 @@ canvas {
     height: 100%;
 }
 
+.dark .logo svg {
+    fill: #ffffff;
+}
+
+.light .logo svg {
+    fill: #ef5525;
+}
+
 .info {
-    color: #ffffffb2;
     text-align: left;
     font-size: 4vmin;
+}
+
+.dark .info {
+    color: #ffffffb2;
+}
+
+.light .info {
+    color: #000000b2;
 }
 
 .telegram {
@@ -104,11 +133,24 @@ canvas {
     -webkit-transition: background-color 250ms;
     -o-transition: background-color 250ms;
     -moz-transition: background-color 250ms;
-    transition: background-color 250ms;
+    transition: all 250ms;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
-.telegram:hover {
+.dark .telegram {
+    background-color: #222222cc;
+}
+
+.light .telegram {
+    background-color: #eeeeeecc;
+}
+
+.dark .telegram:hover {
     background-color: #333333cc;
+}
+
+.light .telegram:hover {
+    background-color: #ddddddcc;
 }
 
 .telegram svg {
@@ -121,6 +163,14 @@ canvas {
     -o-transition: fill 250ms;
     -moz-transition: fill 250ms;
     transition: fill 250ms;
+}
+
+.dark .telegram svg {
+    fill: #ffffff;
+}
+
+.light .telegram svg {
+    fill: #ef5525;
 }
 
 .page {
@@ -186,14 +236,25 @@ canvas {
     -moz-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: 50% 50%;
+}
+
+.dark .screenshots {
+    background-image: url('./images/screenshots-dark.png');
+}
+
+.light .screenshots {
+    background-image: url('./images/screenshots-light.png');
 }
 
 .screenshots::before {
     content: '';
     position: absolute;
     display: block;
-    width: 50%;
-    height: 50%;
+    width: 40%;
+    height: 40%;
     top: 50%;
     left: 50%;
     -webkit-transform: translate(-50%, -50%);
@@ -211,22 +272,11 @@ canvas {
     animation: fade 10s ease-in-out infinite;
 }
 
-.screenshots img {
-    max-width: 100%;
-    max-height: 100%;
-}
-
-.screenshots picture {
-    position: relative;
-    max-width: 100%;
-    max-height: 100%;
-}
-
-.screenshots picture::before {
+.screenshots::after {
     content: '';
     position: absolute;
     display: block;
-    width: 100%;
+    width: 90%;
     height: 2%;
     bottom: 0;
     left: 50%;
@@ -283,50 +333,39 @@ canvas {
     }
 }
 
-@-webkit-keyframes fade {
-    0%,
-    100% {
-        width: 50%;
-        height: 50%;
+/* @media (prefers-color-scheme: dark) {
+    body {
+        background-color: #1a1a1a;
     }
-    50% {
-        width: 75%;
-        height: 75%;
-    }
-}
 
-@-moz-keyframes fade {
-    0%,
-    100% {
-        width: 50%;
-        height: 50%;
+    .info {
+        color: #ffffffb2;
     }
-    50% {
-        width: 75%;
-        height: 75%;
-    }
-}
 
-@-o-keyframes fade {
-    0%,
-    100% {
-        width: 50%;
-        height: 50%;
+    .telegram {
+        background-color: #222222cc;
     }
-    50% {
-        width: 75%;
-        height: 75%;
+
+    .telegram:hover {
+        background-color: #333333cc;
     }
-}
+
+    .screenshots picture::before {
+        background: -webkit-radial-gradient(#1a1a1a, transparent 75%);
+        background: -moz-radial-gradient(#1a1a1a, transparent 75%);
+        background: -o-radial-gradient(#1a1a1a, transparent 75%);
+        background: radial-gradient(#1a1a1a, transparent 75%);
+    }
+} */
 
 @keyframes fade {
     0%,
     100% {
-        width: 50%;
-        height: 50%;
+        width: 40%;
+        height: 40%;
     }
     50% {
-        width: 75%;
-        height: 75%;
+        width: 60%;
+        height: 60%;
     }
 }

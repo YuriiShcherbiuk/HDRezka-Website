@@ -172,3 +172,23 @@ window.onresize = () => {
 function rand(min, max) {
     return Math.random() * (max - min) + min;
 }
+
+//Theme
+let theme = 'light';
+
+if (window.matchMedia) {
+    window
+        .matchMedia('(prefers-color-scheme: dark)')
+        .addEventListener('change', (event) => {
+            theme = event.matches ? 'dark' : 'light';
+            document.body.className = theme;
+        });
+
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        theme = 'dark';
+    } else {
+        theme = 'light';
+    }
+
+    document.body.className = theme;
+}
