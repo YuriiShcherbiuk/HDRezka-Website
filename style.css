@@ -46,7 +46,7 @@ body {
     background-color: #fcf8f8;
 }
 
-canvas {
+.p5Canvas {
     display: block;
     position: absolute;
     top: 0;
