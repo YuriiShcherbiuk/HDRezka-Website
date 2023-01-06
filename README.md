@@ -1,3 +1,1 @@
----
-permalink: /index.html
----
+[HDRezka](http://reznya.online/)
