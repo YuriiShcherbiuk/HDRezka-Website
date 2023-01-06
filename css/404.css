@@ -143,3 +143,17 @@ span {
 .light .no {
     color: #000000b2;
 }
+
+@media (max-width: 768px) {
+    .message {
+        width: 50vmin;
+    }
+
+    span {
+        font-size: 9vmin;
+    }
+
+    .err {
+        font-size: 10vmin;
+    }
+}
