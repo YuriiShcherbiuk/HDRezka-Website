@@ -69,8 +69,8 @@ class Snowflake {
     }
 }
 
-const MIN_SIZE = 10,
-    MAX_SIZE = 30,
+const MIN_SIZE = 0.1,
+    MAX_SIZE = 0.3,
     MIN_SPEED = 0.3,
     MAX_SPEED = 0.8,
     SNOWFLAKE_PER_PIXEL = 5000;
@@ -80,13 +80,15 @@ let noise;
 let snowflake, snowTheme;
 
 let w = 0,
-    h = 0;
+    h = 0,
+    vmin = 0;
 
 const snow = [];
 
 function setup() {
     w = window.innerWidth;
     h = window.innerHeight;
+    vmin = Math.min(w, h) * 0.2;
     createCanvas(w, h);
 
     snowTheme = theme;
@@ -128,7 +130,7 @@ function draw() {
             tint(255, 255 * snow[i].opacity);
         }
 
-        image(snowflake, 0, 0, snow[i].size, snow[i].size);
+        image(snowflake, 0, 0, snow[i].size * vmin, snow[i].size * vmin);
 
         pop();
     }
@@ -181,6 +183,7 @@ function createSnowflake(theme) {
 window.onresize = () => {
     w = window.innerWidth;
     h = window.innerHeight;
+    vmin = Math.min(w, h) * 0.2;
     resizeCanvas(w, h);
 };
 
