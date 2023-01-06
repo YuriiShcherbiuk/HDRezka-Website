@@ -145,6 +145,10 @@ span {
 }
 
 @media (max-width: 768px) {
+    .page {
+        padding: 8vmin 0;
+    }
+
     .message {
         width: 50vmin;
     }
