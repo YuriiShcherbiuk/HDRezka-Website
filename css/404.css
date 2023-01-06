@@ -121,7 +121,7 @@ span {
 
 .err {
     font-family: 'Onest Bold', sans-serif;
-    font-size: 101vmin;
+    font-size: 10vmin;
 }
 
 .dark .err {
