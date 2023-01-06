@@ -62,7 +62,7 @@ if (d.getMonth() < 2 || d.getMonth() > 10) {
 
     script.onload = function () {
         const script = document.createElement('script');
-        script.src = './snowfall.js';
+        script.src = './js/snowfall.js';
 
         document.body.appendChild(script);
     };
