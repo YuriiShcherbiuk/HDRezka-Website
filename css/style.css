@@ -1,13 +1,13 @@
 @font-face {
     font-family: 'Onest Bold';
-    src: url('./fonts/OnestBold.ttf') format('truetype'),
-        url('./fonts/OnestBold.ttf') format('woff');
+    src: url('../fonts/OnestBold.ttf') format('truetype'),
+        url('../fonts/OnestBold.ttf') format('woff');
 }
 
 @font-face {
     font-family: 'Onest Medium';
-    src: url('./fonts/OnestMedium.ttf') format('truetype'),
-        url('./fonts/OnestMedium.ttf') format('woff');
+    src: url('../fonts/OnestMedium.ttf') format('truetype'),
+        url('../fonts/OnestMedium.ttf') format('woff');
 }
 
 * {
@@ -251,11 +251,11 @@ body {
 }
 
 .dark .screenshots {
-    background-image: url('./images/screenshots-dark.png');
+    background-image: url('../images/screenshots-dark.png');
 }
 
 .light .screenshots {
-    background-image: url('./images/screenshots-light.png');
+    background-image: url('../images/screenshots-light.png');
 }
 
 .screenshots::before {
