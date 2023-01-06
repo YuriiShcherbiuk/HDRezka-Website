@@ -50,17 +50,17 @@ class Snowflake {
         this.rotation += this.rotateSpeed;
         this.off += 0.007;
 
-        if (this.posY > h + this.size) {
-            this.posY = -this.size;
+        if (this.posY > h + this.size * vmin) {
+            this.posY = -this.size * vmin;
             this.posX = Math.random() * w;
         }
 
-        if (this.posX > w + this.size) {
-            this.posX = -this.size;
+        if (this.posX > w + this.size * vmin) {
+            this.posX = -this.size * vmin;
         }
 
-        if (this.posX < 0 - this.size) {
-            this.posX = w + this.size;
+        if (this.posX < 0 - this.size * vmin) {
+            this.posX = w + this.size * vmin;
         }
 
         if (this.opacity < 1) {
