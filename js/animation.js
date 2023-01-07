@@ -69,6 +69,36 @@ class Snowflake {
     }
 }
 
+class Wallker {
+    constructor() {
+        this.posX = 0;
+        this.speed = 9;
+
+        this.x = 0;
+        this.y = 44;
+    }
+
+    update() {
+        this.posX += this.speed;
+
+        if (this.posX > w - 32) {
+            this.posX = w - 32;
+            this.speed = -9;
+            this.y = 0;
+        } else if (this.posX < 0) {
+            this.posX = 0;
+            this.speed = 9;
+            this.y = 44;
+        }
+
+        this.x += 32;
+
+        if (this.x >= 256) {
+            this.x = 0;
+        }
+    }
+}
+
 const MIN_SIZE = 0.1,
     MAX_SIZE = 0.3,
     MIN_SPEED = 0.3,
@@ -77,13 +107,17 @@ const MIN_SIZE = 0.1,
 
 let noise;
 
-let snowflake, snowTheme;
+let snowflake, snowTheme, wallker, wallkerImage;
 
 let w = 0,
     h = 0,
     vmin = 0;
 
 const snow = [];
+
+function preload() {
+    wallkerImage = loadImage('../images/walker.png');
+}
 
 function setup() {
     w = window.innerWidth;
@@ -93,6 +127,8 @@ function setup() {
 
     snowTheme = theme;
     snowflake = createSnowflake(snowTheme);
+
+    wallker = new Wallker();
 
     noise = new Perlin();
 }
@@ -119,8 +155,6 @@ function draw() {
     theme === 'dark' ? background(26) : background(252, 248, 248);
 
     for (let i = 0; i < snow.length; i++) {
-        snow[i].update();
-
         push();
 
         translate(snow[i].posX, snow[i].posY);
@@ -133,6 +167,24 @@ function draw() {
         image(snowflake, 0, 0, snow[i].size * vmin, snow[i].size * vmin);
 
         pop();
+
+        snow[i].update();
+    }
+
+    image(
+        wallkerImage,
+        wallker.posX,
+        h - 44,
+        32,
+        44,
+        wallker.x,
+        wallker.y,
+        32,
+        44
+    );
+
+    if (frameCount % 3 === 0) {
+        wallker.update();
     }
 }
 

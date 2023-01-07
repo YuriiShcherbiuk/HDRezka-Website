@@ -29,10 +29,26 @@ if (d.getMonth() < 2 || d.getMonth() > 10) {
 
     script.onload = function () {
         const script = document.createElement('script');
-        script.src = './js/snowfall.js';
+        script.src = './js/animation.js';
 
         document.body.appendChild(script);
     };
 
     document.head.appendChild(script);
 }
+
+//Button
+
+const octokit = new Octokit();
+
+octokit
+    .request('GET /repos/{owner}/{repo}/releases/latest', {
+        owner: 'OWNER',
+        repo: 'REPO',
+    })
+    .then(() => {
+        console.log('s');
+    })
+    .catch(() => {
+        console.log('e');
+    });
