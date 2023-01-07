@@ -41,7 +41,7 @@ class Snowflake {
         this.rotateSpeed = ((Math.random() - 0.5) * this.speed) / 20;
         this.size = rand(MIN_SIZE, MAX_SIZE);
         this.off = rand(0, 1000);
-        this.opacity = 0;
+        this.scale = 0.01;
     }
 
     update() {
@@ -63,38 +63,8 @@ class Snowflake {
             this.posX = w + this.size * vmin;
         }
 
-        if (this.opacity < 1) {
-            this.opacity += 0.05;
-        }
-    }
-}
-
-class Wallker {
-    constructor() {
-        this.posX = 0;
-        this.speed = 9;
-
-        this.x = 0;
-        this.y = 44;
-    }
-
-    update() {
-        this.posX += this.speed;
-
-        if (this.posX > w - 32) {
-            this.posX = w - 32;
-            this.speed = -9;
-            this.y = 0;
-        } else if (this.posX < 0) {
-            this.posX = 0;
-            this.speed = 9;
-            this.y = 44;
-        }
-
-        this.x += 32;
-
-        if (this.x >= 256) {
-            this.x = 0;
+        if (this.scale < 1) {
+            this.scale += 0.01;
         }
     }
 }
@@ -107,17 +77,13 @@ const MIN_SIZE = 0.1,
 
 let noise;
 
-let snowflake, snowTheme, wallker, wallkerImage;
+let snowflake, snowTheme;
 
 let w = 0,
     h = 0,
     vmin = 0;
 
 const snow = [];
-
-function preload() {
-    wallkerImage = loadImage('../images/walker.png');
-}
 
 function setup() {
     w = window.innerWidth;
@@ -127,8 +93,6 @@ function setup() {
 
     snowTheme = theme;
     snowflake = createSnowflake(snowTheme);
-
-    wallker = new Wallker();
 
     noise = new Perlin();
 }
@@ -160,31 +124,17 @@ function draw() {
         translate(snow[i].posX, snow[i].posY);
         rotate(snow[i].rotation);
 
-        if (snow[i].opacity < 1) {
-            tint(255, 255 * snow[i].opacity);
-        }
-
-        image(snowflake, 0, 0, snow[i].size * vmin, snow[i].size * vmin);
+        image(
+            snowflake,
+            -(snow[i].size * vmin * snow[i].scale) / 2,
+            -(snow[i].size * vmin * snow[i].scale) / 2,
+            snow[i].size * vmin * snow[i].scale,
+            snow[i].size * vmin * snow[i].scale
+        );
 
         pop();
 
         snow[i].update();
-    }
-
-    image(
-        wallkerImage,
-        wallker.posX,
-        h - 44,
-        32,
-        44,
-        wallker.x,
-        wallker.y,
-        32,
-        44
-    );
-
-    if (frameCount % 3 === 0) {
-        wallker.update();
     }
 }
 
