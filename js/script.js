@@ -23,7 +23,10 @@ if (window.matchMedia) {
 
 const d = new Date();
 
-if (d.getMonth() < 2 || d.getMonth() > 10) {
+if (
+    (d.getMonth() === 11 && d.getDate() > 20) ||
+    (d.getMonth() === 0 && d.getDate() < 11)
+) {
     const script = document.createElement('script');
     script.src = 'https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/p5.min.js';
 
